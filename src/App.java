@@ -17,12 +17,10 @@ public class App {
         storage.put(8, "second line");
         storage.put(9, "first line");
         storage.put(10, "new line");
-        System.out.println(storage.getLength() + " - storage capacity");
+        System.out.println(storage.getLength() + " - storage length");
         storage.put(11, "array was increased");
         System.out.println(storage.getValue(11));
         System.out.println(storage.getLength() + " - storage capacity");
 
-        Storage<String, String> secondStorage = new Storage<>(3);
-        System.out.println(secondStorage.getLength() + "-- capacity of second storage");
     }
 }

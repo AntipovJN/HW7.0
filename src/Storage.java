@@ -24,7 +24,7 @@ public class Storage<K, V> {
     }
 
     public void put(K key, V value) {
-        if (lastIndex == lengthOfStorage) {
+        if (lastIndex == lengthOfStorage-1) {
             capacityIncrease();
         }
         keys[lastIndex] = key;
@@ -33,8 +33,7 @@ public class Storage<K, V> {
     }
 
     private void capacityIncrease() {
-       int  newLengthOfStorage = lengthOfStorage;
-        newLengthOfStorage += lengthOfStorage >> 1;
+       int  newLengthOfStorage = lengthOfStorage + (lengthOfStorage >> 1);
         keys = Arrays.copyOf(keys, newLengthOfStorage);
         values = Arrays.copyOf(values, newLengthOfStorage);
         lengthOfStorage = newLengthOfStorage;
