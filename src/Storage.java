@@ -2,18 +2,16 @@ import java.util.Arrays;
 
 public class Storage<K, V> {
 
-    private final int INITIAL_CAPACITY = 10;
+    private static final int INITIAL_CAPACITY = 10;
     private K[] keys;
     private V[] values;
     private int lengthOfStorage;
     private int lastIndex;
-    private int newLengthOfStorage;
 
     public Storage() {
         keys = (K[]) new Object[INITIAL_CAPACITY];
         values = (V[]) new Object[INITIAL_CAPACITY];
         lengthOfStorage = INITIAL_CAPACITY;
-        newLengthOfStorage = INITIAL_CAPACITY;
         lastIndex = 0;
     }
 
@@ -21,12 +19,12 @@ public class Storage<K, V> {
         keys = (K[]) new Object[capacity];
         values = (V[]) new Object[capacity];
         lengthOfStorage = capacity;
-        newLengthOfStorage = capacity;
+
         lastIndex = 0;
     }
 
     public void put(K key, V value) {
-        if (keys[lengthOfStorage - 1] != null) {
+        if (lastIndex == lengthOfStorage) {
             capacityIncrease();
         }
         keys[lastIndex] = key;
@@ -35,6 +33,7 @@ public class Storage<K, V> {
     }
 
     private void capacityIncrease() {
+       int  newLengthOfStorage = lengthOfStorage;
         newLengthOfStorage += lengthOfStorage >> 1;
         keys = Arrays.copyOf(keys, newLengthOfStorage);
         values = Arrays.copyOf(values, newLengthOfStorage);
@@ -50,7 +49,7 @@ public class Storage<K, V> {
     }
 
     public int getLength() {
-        return lengthOfStorage;
+        return lastIndex;
     }
 
     public V getValue(K key) {
